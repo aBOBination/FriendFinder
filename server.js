@@ -4,9 +4,8 @@
 // Dependencies
 // =============================================================
 var express = require('express');
-var path = require('path');
-var friends = require('./app/data/friends.js');
-var htmlRoutes = require('./app/routes/htmlRoutes.js');
+var htmlRoutes = require('./app/routing/htmlRoutes.js');
+var apiRoutes = require('./app/routing/apiRoutes.js');
 
 // Sets up the Express App
 // =============================================================
@@ -18,19 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
-// =============================================================
-app.routes(htmlRoutes);
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, './app/public/home.html'));
-// });
-
-// app.get('/survey', function (req, res) {
-//   res.sendFile(path.join(__dirname, './app/public/survey.html'));
-// });
-
-app.get('/api/friends', function (req, res) {
-  return res.json(friends);
-});
+app.use(htmlRoutes);
+app.use(apiRoutes);
 
 // // Displays all characters
 // app.get('/api/characters', function (req, res) {
@@ -68,7 +56,6 @@ app.get('/api/friends', function (req, res) {
 
 //   res.json(newCharacter);
 // });
-module.exports = app;
 
 // Starts the server to begin listening
 // =============================================================

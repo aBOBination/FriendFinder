@@ -5,11 +5,17 @@
 
 // A POST routes /api/friends. This will be used to handle incoming survey
 // results. This route will also be used to handle the compatibility logic.
-var app = require('../../server.js');
+
+var express = require('express');
+var router = express.Router();
 var friends = require('../data/friends.js');
 
-app.get('/api/friends', function (req, res) {
+router.use(function (req, res, next) {
+  next();
+});
+
+router.get('/api/friends', function (req, res) {
   return res.json(friends);
 });
 
-console.log();
+module.exports = router;

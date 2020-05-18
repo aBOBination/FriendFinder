@@ -4,12 +4,20 @@
 // A default, catch-all route that leads to home.html which displays the
 // home page.
 
-// var app = require('../../server.js');
+var express = require('express');
+var router = express.Router();
+var path = require('path');
 
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../public/home.html'));
-// });
+router.use(function (req, res, next) {
+  next();
+});
 
-// app.get('/add', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../public/survey.html'));
-// });
+router.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../public/home.html'));
+});
+
+router.get('/survey', function (req, res) {
+  res.sendFile(path.join(__dirname, '../public/survey.html'));
+});
+
+module.exports = router;
