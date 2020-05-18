@@ -6,6 +6,7 @@
 var express = require('express');
 var path = require('path');
 var friends = require('./app/data/friends.js');
+var htmlRoutes = require('./app/routes/htmlRoutes.js');
 
 // Sets up the Express App
 // =============================================================
@@ -18,14 +19,14 @@ app.use(express.json());
 
 // Routes
 // =============================================================
+app.routes(htmlRoutes);
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, './app/public/home.html'));
+// });
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './app/public/home.html'));
-});
-
-app.get('/survey', function (req, res) {
-  res.sendFile(path.join(__dirname, './app/public/survey.html'));
-});
+// app.get('/survey', function (req, res) {
+//   res.sendFile(path.join(__dirname, './app/public/survey.html'));
+// });
 
 app.get('/api/friends', function (req, res) {
   return res.json(friends);
