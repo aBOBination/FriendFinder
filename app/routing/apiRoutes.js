@@ -9,6 +9,7 @@
 var express = require('express');
 var router = express.Router();
 var friends = require('../data/friends.js');
+var tools = require('./tools.js');
 
 router.use(function (req, res, next) {
   next();
@@ -20,6 +21,9 @@ router.get('/api/friends', function (req, res) {
 
 router.post('/api/friends', function (req, res) {
   var newFriend = req.body;
+  console.log(newFriend.scores);
+  newFriend.scores = newFriend.scores.map(Number);
+  tools.findMatch(newFriend, friends);
   // find closest match
   newFriend.name = 'update ' + newFriend.name;
   console.log(newFriend);
