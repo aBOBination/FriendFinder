@@ -21,13 +21,10 @@ router.get('/api/friends', function (req, res) {
 
 router.post('/api/friends', function (req, res) {
   var newFriend = req.body;
-  console.log(newFriend.scores);
   newFriend.scores = newFriend.scores.map(Number);
   tools.findMatch(newFriend, friends);
   // find closest match
   newFriend.name = 'update ' + newFriend.name;
-  console.log(newFriend);
-  console.log(newFriend.scores.reduce((a, b) => a + b, 0));
   // return closest match JSON
   res.json(newFriend);
   // push new friend to friends data
