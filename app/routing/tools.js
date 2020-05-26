@@ -28,9 +28,10 @@ function findMatch(newFriend, allFriends) {
   var matchingFriends = allFriends.filter(function (low) {
     return low.avgDiff === lowestAvg;
   });
-  console.log(matchingFriends);
-  console.log(matchingFriends.length);
-  console.log(lowestAvg);
+  var numResults = matchingFriends.length;
+  var randomResult = Math.floor(Math.random() * numResults);
+  var result = matchingFriends[randomResult];
+  return result;
 }
 
 module.exports = {
