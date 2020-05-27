@@ -18,7 +18,7 @@ function findLowestAvg(newFriend, allFriends) {
     avgDiffs.sort();
   });
   allFriends.sort(function (a, b) {
-    return a.diff - b.diff;
+    return a.avgDiff - b.avgDiff;
   });
   return avgDiffs[0];
 }
@@ -31,6 +31,9 @@ function findMatch(newFriend, allFriends) {
   var numResults = matchingFriends.length;
   var randomResult = Math.floor(Math.random() * numResults);
   var result = matchingFriends[randomResult];
+  allFriends.forEach((friend) => {
+    delete friend.avgDiff;
+  });
   return result;
 }
 
